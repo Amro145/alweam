@@ -22,7 +22,7 @@ export default function StorePage() {
           {products.map((product) => (
             <Link key={product.id} href={`/store/${product.id}`} className="group block">
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
-                <div className="aspect-[4/5] relative overflow-hidden bg-gray-100">
+                <div className="aspect-4/5 relative overflow-hidden bg-gray-100">
                   <img 
                     src={product.img} 
                     alt={product.title} 
