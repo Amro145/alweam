@@ -26,7 +26,7 @@ export default function AdminDashboard() {
     };
 
     try {
-      const res = await fetch(`${apiUrl}/api/admin/products`, {
+      const res = await fetch(`${apiUrl}/api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export default function AdminDashboard() {
     };
 
     try {
-      const res = await fetch(`${apiUrl}/api/admin/portfolio`, {
+      const res = await fetch(`${apiUrl}/api/portfolio`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
