@@ -8,10 +8,16 @@ export default function CustomGiftPage() {
   const [loading, setLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Image must be under 5MB');
+        return;
+      }
+      setSelectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
       setError(null);
     }
@@ -19,39 +25,65 @@ export default function CustomGiftPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!selectedFile) return setError("Please attach an image.");
+
     setLoading(true);
     setError(null);
 
     const form = e.currentTarget;
-    const formData = new FormData(form);
+    const description = (form.elements.namedItem('description') as HTMLTextAreaElement).value;
 
     try {
-      const url = `${process.env.NEXT_PUBLIC_API_URL || 'https://my-app.amroaltayeb14.workers.dev'}/api/upload-gift`;
-      const res = await fetch(url, {
-        method: 'POST',
-        body: formData,
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://my-app.amroaltayeb14.workers.dev';
+      
+      // Step 1: Request Signature from our Backend
+      const sigRes = await fetch(`${apiUrl}/api/upload-gift/signature`);
+      if (!sigRes.ok) throw new Error('Failed to fetch secure upload signature from server.');
+      const { signature, timestamp, cloudName, apiKey } = await sigRes.json();
+
+      // Step 2: Upload direct to Cloudinary from the browser
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append("file", selectedFile);
+      cloudinaryFormData.append("api_key", apiKey);
+      cloudinaryFormData.append("timestamp", timestamp);
+      cloudinaryFormData.append("signature", signature);
+      cloudinaryFormData.append("folder", "custom-gifts");
+
+      const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+      const cloudRes = await fetch(uploadUrl, {
+        method: "POST",
+        body: cloudinaryFormData,
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        if (res.status === 400) {
-          throw new Error(data.error || 'Please fill out all required fields properly.');
-        } else if (res.status === 500) {
-          throw new Error('Our servers encountered an issue. Please try again later.');
-        }
-        throw new Error(data.error || 'Request failed.');
+      const cloudData = await cloudRes.json();
+      
+      if (!cloudRes.ok) {
+        throw new Error(cloudData.error?.message || "Failed to upload image to Cloudinary.");
       }
 
-      // Success
-      if (data.data?.whatsappLink) {
-        window.location.href = data.data.whatsappLink;
+      // Step 3: Tell our Backend to save the Order mapping
+      const saveRes = await fetch(`${apiUrl}/api/upload-gift/gift-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          description,
+          imageUrl: cloudData.secure_url
+        })
+      });
+
+      const { data, success, error: dbError } = await saveRes.json();
+      if (!success) {
+        throw new Error(dbError || "Failed to save order on backend.");
+      }
+
+      // Success Redirect
+      if (data?.whatsappLink) {
+        window.location.href = data.whatsappLink;
       } else {
          setError("Order submitted but could not connect to WhatsApp");
       }
 
     } catch (err: any) {
-      setError(err.message || 'Error uploading. Please try again.');
+      setError(err.message || 'Error processing your order. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -81,7 +113,7 @@ export default function CustomGiftPage() {
                   type="file" 
                   name="image" 
                   accept="image/*" 
-                  required 
+                  required={!selectedFile}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   onChange={handleImageChange}
                 />
@@ -124,7 +156,7 @@ export default function CustomGiftPage() {
               {loading ? (
                 <>
                   <Loader2 className="w-5 h-5 mr-3 animate-spin" />
-                  Processing your request...
+                  Processing Order...
                 </>
               ) : (
                 <>
