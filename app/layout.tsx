@@ -34,7 +34,7 @@ export default function RootLayout({
                   الوئام
                 </Link>
               </div>
-              <nav className="hidden md:flex space-x-8 space-x-reverse">
+              <nav className="hidden md:flex space-x-8 space-x-reverse justify-between">
                 <Link href="/store" className="text-gray-600 hover:text-amber-600 transition-colors font-medium">المنتجات</Link>
                 <Link href="/portfolio" className="text-gray-600 hover:text-amber-600 transition-colors font-medium">أعمالنا</Link>
                 <Link href="/custom-gift" className="text-gray-600 hover:text-amber-600 transition-colors font-medium">هدية مخصصة</Link>

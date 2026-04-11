@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     );
   }
 
-  const whatsappMessage = `مرحباً، أود الاستفسار عن المنتج: ${product.name}\nالسعر: ${product.price} ر.س\nالرابط: ${window.location.href}`;
+  const whatsappMessage = `مرحباً، أود الاستفسار عن المنتج: ${product.name}\nالسعر: ${product.price} ر.س\nالرابط: ${window.location.href} :الصوره ${product.imageUrl}`;
   const whatsappUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '966500000000'}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
