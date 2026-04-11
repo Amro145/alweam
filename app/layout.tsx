@@ -17,12 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-const categories = [
-  { name: "المجوهرات", slug: "jewelry", icon: "◇" },
-  { name: "العطور", slug: "perfumes", icon: "✦" },
-  { name: "المقتنيات", slug: "collectibles", icon: "❖" },
-  { name: "الإكسسوارات", slug: "accessories", icon: "✧" },
-];
+import Navbar from "./components/Navbar";
 
 export default function RootLayout({
   children,
@@ -32,79 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans bg-stone-50 text-stone-900">
-        <header className="glass sticky top-0 z-50 border-b border-white/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <Link href="/" className="group flex items-center gap-3">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
-                  <span className="relative text-2xl font-bold bg-gradient-to-br from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent font-display tracking-wide">
-                    الوئام
-                  </span>
-                </div>
-                <span className="hidden sm:block text-xs text-stone-400 font-light tracking-wider">AL-WIAM</span>
-              </Link>
-
-              <nav className="hidden lg:flex items-center gap-1">
-                <Link 
-                  href="/store" 
-                  className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
-                >
-                  المنتجات
-                </Link>
-                <div className="relative group px-2">
-                  <button className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50 flex items-center gap-2">
-                    التصنيفات
-                    <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                    <div className="glass-card rounded-2xl p-2 min-w-[200px] shadow-xl border border-white/50">
-                      {categories.map((cat) => (
-                        <Link
-                          key={cat.slug}
-                          href={`/category/${cat.slug}`}
-                          className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-amber-50/80 transition-all duration-200 group/item"
-                        >
-                          <span className="text-amber-500 group-hover/item:scale-110 transition-transform">{cat.icon}</span>
-                          <span className="text-stone-700 group-hover/item:text-amber-700 transition-colors font-medium">{cat.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <Link 
-                  href="/portfolio" 
-                  className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
-                >
-                  أعمالنا
-                </Link>
-                <Link 
-                  href="/custom-gift" 
-                  className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
-                >
-                  هدية مخصصة
-                </Link>
-              </nav>
-
-              <div className="flex items-center gap-4">
-                <Link 
-                  href="/custom-gift" 
-                  className="relative group overflow-hidden bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 transition-all duration-300 hover:scale-105"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    اطلب الآن
-                    <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </header>
+        <Navbar />
         <main className="flex-1 flex flex-col">
           {children}
         </main>

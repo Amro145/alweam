@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { UploadCloud, Loader2, Send, AlertCircle } from 'lucide-react';
+import { UploadCloud, Loader2, Send, AlertCircle, Sparkles, ArrowRight, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 
 export default function CustomGiftPage() {
@@ -9,12 +9,13 @@ export default function CustomGiftPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [success, setSuccess] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        setError('Image must be under 5MB');
+        setError('حجم الصورة يجب أن يكون أقل من 5 ميجابايت');
         return;
       }
       setSelectedFile(file);
@@ -25,7 +26,7 @@ export default function CustomGiftPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!selectedFile) return setError("Please attach an image.");
+    if (!selectedFile) return setError("يرجى إرفاق صورة توضيحية لطلبك.");
 
     setLoading(true);
     setError(null);
@@ -36,12 +37,12 @@ export default function CustomGiftPage() {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://my-app.amroaltayeb14.workers.dev';
       
-      // Step 1: Request Signature from our Backend
+      // Step 1: Request Signature
       const sigRes = await fetch(`${apiUrl}/api/upload-gift/signature`);
-      if (!sigRes.ok) throw new Error('Failed to fetch secure upload signature from server.');
+      if (!sigRes.ok) throw new Error('فشل جلب تصريح الرفع من الخادم.');
       const { signature, timestamp, cloudName, apiKey } = await sigRes.json();
 
-      // Step 2: Upload direct to Cloudinary from the browser
+      // Step 2: Upload direct to Cloudinary
       const cloudinaryFormData = new FormData();
       cloudinaryFormData.append("file", selectedFile);
       cloudinaryFormData.append("api_key", apiKey);
@@ -57,7 +58,7 @@ export default function CustomGiftPage() {
       const cloudData = await cloudRes.json();
       
       if (!cloudRes.ok) {
-        throw new Error(cloudData.error?.message || "Failed to upload image to Cloudinary.");
+        throw new Error(cloudData.error?.message || "فشل رفع الصورة لـ Cloudinary.");
       }
 
       // Step 3: Tell our Backend to save the Order mapping
@@ -70,102 +71,177 @@ export default function CustomGiftPage() {
         })
       });
 
-      const { data, success, error: dbError } = await saveRes.json();
-      if (!success) {
-        throw new Error(dbError || "Failed to save order on backend.");
+      const { data, success: saveSuccess, error: dbError } = await saveRes.json();
+      if (!saveSuccess) {
+        throw new Error(dbError || "فشل حفظ الطلب في قاعدة البيانات.");
       }
 
-      // Success Redirect
-      if (data?.whatsappLink) {
-        window.location.href = data.whatsappLink;
-      } else {
-         setError("Order submitted but could not connect to WhatsApp");
-      }
+      setSuccess(true);
+      // Success Redirect to WhatsApp after short delay
+      setTimeout(() => {
+        if (data?.whatsappLink) {
+          window.location.href = data.whatsappLink;
+        }
+      }, 1500);
 
     } catch (err: any) {
-      setError(err.message || 'Error processing your order. Please try again.');
+      setError(err.message || 'حدث خطأ أثناء معالجة طلبك. يرجى المحاولة مرة أخرى.');
     } finally {
       setLoading(false);
     }
   };
 
+  if (success) {
+    return (
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center p-6 text-center">
+        <div className="glass-card rounded-[2.5rem] p-12 max-w-lg animate-scale-in">
+           <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-green-200">
+             <CheckCircle2 className="w-12 h-12 text-green-600 animate-bounce" />
+           </div>
+           <h1 className="text-3xl font-bold text-stone-900 mb-4 font-display">تم استلام طلبك!</h1>
+           <p className="text-stone-500 mb-8 leading-relaxed">شكراً لثقتكم بالوئام. جاري تحويلك الآن لمحادثة واتساب لمتابعة تفاصيل التصميم والوقت المتوقع للإنجاز.</p>
+           <Loader2 className="w-8 h-8 text-amber-500 animate-spin mx-auto" />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center p-4">
-      <div className="max-w-xl w-full bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-neutral-100">
-        <div className="p-10">
-          <div className="text-center mb-10">
-            <h1 className="text-4xl font-serif text-neutral-900 mb-3 tracking-tight">Custom Gift</h1>
-            <p className="text-neutral-500 text-sm md:text-base">Upload your inspiration and tell us how you want your perfect gift customized.</p>
+    <div className="min-h-screen bg-gradient-to-b from-stone-100/50 via-stone-50 to-stone-100/30 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          
+          {/* Info Side */}
+          <div className="space-y-12 animate-fade-in">
+            <div className="text-right">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-700 text-xs font-bold mb-4">
+                <Sparkles className="w-3.5 h-3.5" />
+                هدايا مخصصة
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-stone-900 mb-6 font-display leading-[1.1]">
+                حوّل <span className="bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">خيالك</span> إلى حقيقة ملموسة
+              </h1>
+              <p className="text-lg text-stone-500 leading-relaxed max-w-lg">
+                هل لديك فكرة هدية فريدة؟ دعنا نساعدك في تصميمها وتحويلها إلى واقع بلمساتنا الفنية الخاصة. ارفع صورة للإلهام واشرح لنا ذوقك.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+               <div className="glass-card rounded-3xl p-6 bg-white/40 border-white/50">
+                  <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-4 text-amber-600">
+                     <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-stone-800 mb-2">جودة التصنيع</h3>
+                  <p className="text-sm text-stone-500">نستخدم أجود أنواع الأخشاب والمعادن لضمان استدامة هديتك</p>
+               </div>
+               <div className="glass-card rounded-3xl p-6 bg-white/40 border-white/50">
+                  <div className="w-12 h-12 bg-stone-100 rounded-2xl flex items-center justify-center mb-4 text-stone-600">
+                     <Clock className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-stone-800 mb-2">دقة المواعيد</h3>
+                  <p className="text-sm text-stone-500">نلتزم بالوقت المتفق عليه بكل احترافية لنكون جزءاً من مناسبتك</p>
+               </div>
+            </div>
+
+            <div className="bg-stone-900 rounded-[2rem] p-8 text-white relative overflow-hidden group">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl group-hover:bg-amber-500/30 transition-colors"></div>
+               <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+                 <span className="w-2 h-8 bg-amber-500 rounded-full"></span>
+                 ماذا سيحدث بعد إرسال الطلب؟
+               </h3>
+               <ul className="space-y-4 text-white/70">
+                 <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">1</span>
+                    يتم تحويلك لمحادثة مباشرة عبر واتساب مع فريق الوئام
+                 </li>
+                 <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">2</span>
+                    نناقش معك تفاصيل التصميم، الحجم، والمواد المستخدمة
+                 </li>
+                 <li className="flex items-start gap-3">
+                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">3</span>
+                    نرسل لك عرض السعر والمدة الزمنية المتوقعة للإنجاز
+                 </li>
+               </ul>
+            </div>
           </div>
 
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-xl flex items-start gap-3 border border-red-100">
-              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
-              <p className="text-sm font-medium">{error}</p>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="space-y-3">
-              <label className="block text-sm font-semibold text-neutral-800">Inspiration Image</label>
-              <div className="relative group border-2 border-dashed border-neutral-200 rounded-2xl p-8 text-center hover:border-blue-500 hover:bg-blue-50/50 transition-all duration-300 cursor-pointer bg-neutral-50 flex flex-col items-center justify-center min-h-[220px]">
-                <input 
-                  type="file" 
-                  name="image" 
-                  accept="image/*" 
-                  required={!selectedFile}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                  onChange={handleImageChange}
-                />
-                {previewUrl ? (
-                  <div className="relative w-full h-full flex justify-center">
-                    <img src={previewUrl} alt="Preview" className="max-h-48 object-contain rounded-lg shadow-sm" />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center z-20 pointer-events-none">
-                      <p className="text-white text-sm font-medium">Change Image</p>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 text-blue-500 group-hover:scale-110 transition-transform">
-                      <UploadCloud className="w-8 h-8" />
-                    </div>
-                    <p className="text-base text-neutral-700 font-medium mb-1">Click or drag image to upload</p>
-                    <p className="text-xs text-neutral-400">Supported formats: PNG, JPG (Max 5MB)</p>
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <label htmlFor="description" className="block text-sm font-semibold text-neutral-800">Gift Description</label>
-              <textarea 
-                id="description"
-                name="description" 
-                rows={5} 
-                required
-                className="w-full px-5 py-4 rounded-2xl border border-neutral-200 bg-neutral-50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all resize-none text-neutral-800 placeholder:text-neutral-400"
-                placeholder="Describe your desired customization, details, materials, or any specific requests..."
-              ></textarea>
-            </div>
-
-            <button 
-              type="submit" 
-              disabled={loading}
-              className="w-full bg-neutral-900 hover:bg-black text-white font-semibold py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:-translate-y-0.5"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-5 h-5 mr-3 animate-spin" />
-                  Processing Order...
-                </>
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-3" />
-                  Order via WhatsApp
-                </>
+          {/* Form Side */}
+          <div className="lg:sticky lg:top-28 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+            <div className="glass-card rounded-[2.5rem] p-10 md:p-12 bg-white/60 border-white relative shadow-2xl shadow-stone-200/50">
+              
+              {error && (
+                <div className="mb-8 p-4 bg-red-50 text-red-700 rounded-2xl flex items-start gap-3 border border-red-100 animate-shake">
+                  <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                  <p className="text-sm font-bold">{error}</p>
+                </div>
               )}
-            </button>
-          </form>
+
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-4">
+                  <label className="block text-sm font-bold text-stone-800 pr-2">صورة الإلهام أو المسودة</label>
+                  <div className="relative group border-2 border-dashed border-stone-200 rounded-3xl p-10 text-center hover:border-amber-500 hover:bg-amber-50/50 transition-all duration-300 cursor-pointer bg-stone-50/50 min-h-[250px] flex flex-col items-center justify-center">
+                    <input 
+                      type="file" 
+                      name="image" 
+                      accept="image/*" 
+                      required={!selectedFile}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      onChange={handleImageChange}
+                    />
+                    {previewUrl ? (
+                      <div className="relative w-full h-full flex flex-col items-center gap-4">
+                        <img src={previewUrl} alt="Preview" className="max-h-48 object-contain rounded-2xl shadow-lg border border-white" />
+                        <div className="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-stone-600 shadow-sm">تغيير الصورة</div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="w-20 h-20 bg-white rounded-[1.5rem] shadow-xl shadow-stone-200 flex items-center justify-center mb-6 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                          <UploadCloud className="w-10 h-10" />
+                        </div>
+                        <p className="text-lg text-stone-800 font-bold mb-1 font-display">اضغط لرفع الصورة</p>
+                        <p className="text-xs text-stone-400">PNG, JPG بحد أقصى (5 ميجابايت)</p>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <label htmlFor="description" className="block text-sm font-bold text-stone-800 pr-2">أخبرنا عما يدور في ذهنك</label>
+                  <textarea 
+                    id="description"
+                    name="description" 
+                    rows={5} 
+                    required
+                    className="w-full px-6 py-5 rounded-3xl border border-stone-100 shadow-sm bg-stone-50 focus:bg-white focus:ring-8 focus:ring-amber-500/5 focus:border-amber-500 outline-none transition-all resize-none text-stone-800 placeholder:text-stone-300 text-right leading-relaxed"
+                    placeholder="اشرح لنا تفاصيل الهدية التي ترغب بها، المواد، الألوان، أو أي ملاحظات أخرى..."
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="group relative w-full bg-stone-900 hover:bg-black text-white font-bold py-6 px-10 rounded-3xl transition-all duration-300 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed shadow-xl shadow-stone-900/10 active:scale-[0.98] text-lg overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-6 h-6 animate-spin" />
+                        جاري معالجة طلبك...
+                      </>
+                    ) : (
+                      <>
+                        إرسال لـ واتساب
+                        <ArrowRight className="w-6 h-6 -rotate-180 transition-transform group-hover:-translate-x-2" />
+                      </>
+                    )}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                </button>
+              </form>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

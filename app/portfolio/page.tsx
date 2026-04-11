@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Loader2, ImageOff } from 'lucide-react';
+import { Loader2, ImageOff, Sparkles, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface PortfolioWork {
   id: number;
   title: string;
   imageUrl: string;
+  completionDate?: string;
 }
 
 export default function PortfolioPage() {
@@ -33,51 +34,106 @@ export default function PortfolioPage() {
   }, []);
 
   const optimizeImage = (url: string) => {
-    if (url.includes('cloudinary.com')) {
+    if (url && url.includes('cloudinary.com')) {
       return url.replace('/upload/', '/upload/f_auto,q_auto/');
     }
     return url;
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-serif text-neutral-900 mb-4">Our Portfolio</h1>
-          <p className="text-lg text-neutral-500 max-w-2xl mx-auto">Explore some of our previous customized works crafted with love and precision.</p>
+    <div className="min-h-screen bg-gradient-to-b from-stone-100/50 to-stone-50">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-200/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-amber-300/5 rounded-full blur-3xl"></div>
         </div>
-        
-        {loading ? (
-          <div className="min-h-[40vh] flex items-center justify-center">
-            <Loader2 className="w-8 h-8 text-neutral-400 animate-spin" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-700 text-xs font-bold mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              أعمالنا الفنية
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-stone-900 mb-6 font-display">
+              لمسات <span className="bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">إبداعية</span> سابقة
+            </h1>
+            <p className="text-lg text-stone-500 max-w-2xl mx-auto">
+              شاهد مجموعة من أعمالنا المخصصة التي صُممت خصيصاً لعملائنا بكل شغف ودقة
+            </p>
           </div>
-        ) : works.length === 0 ? (
-           <div className="min-h-[40vh] bg-neutral-50 rounded-3xl border border-neutral-100 flex flex-col items-center justify-center text-center p-8">
-             <ImageOff className="w-16 h-16 text-neutral-300 mb-4" />
-             <h2 className="text-xl font-medium text-neutral-900 mb-2">Portfolio is empty</h2>
-             <p className="text-neutral-500 max-w-md">We haven't uploaded our previous works yet. Check back soon for inspiration!</p>
-           </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-            {works.map((work) => (
-              <div key={work.id} className="group overflow-hidden rounded-2xl relative cursor-pointer aspect-square bg-neutral-100">
-                <Image 
-                  src={optimizeImage(work.imageUrl)} 
-                  alt={work.title} 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <h3 className="text-2xl font-serif text-white mb-2">{work.title}</h3>
-                  <p className="text-white/80 text-sm">View details</p>
+
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="glass-card rounded-[2.5rem] overflow-hidden p-4 animate-pulse">
+                  <div className="aspect-square bg-stone-100 rounded-[2rem]"></div>
                 </div>
+              ))}
+            </div>
+          ) : works.length === 0 ? (
+            <div className="glass-card rounded-[2.5rem] p-20 text-center max-w-2xl mx-auto border border-white/50 shadow-xl shadow-stone-200/50">
+              <div className="w-20 h-20 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-300">
+                <ImageOff className="w-10 h-10" />
               </div>
-            ))}
+              <h2 className="text-2xl font-bold text-stone-900 mb-3 font-display">المعرض فارغ حالياً</h2>
+              <p className="text-stone-500">نحن نعمل على توثيق أعمالنا الجديدة. ترقبوا التحديثات قريباً!</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {works.map((work, index) => (
+                <div 
+                  key={work.id} 
+                  className="group relative glass-card-hover rounded-[2.5rem] overflow-hidden p-4 bg-white/40 border border-white/50 shadow-xl shadow-stone-200/50 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.15}s`, animationFillMode: 'both' }}
+                >
+                  <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-stone-100">
+                    <Image 
+                      src={optimizeImage(work.imageUrl)} 
+                      alt={work.title} 
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                    />
+                    
+                    {/* Overlay info */}
+                    <div className="absolute inset-x-4 bottom-4 glass-card p-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+                      <div className="flex items-end justify-between gap-4">
+                        <div className="text-right">
+                          <h3 className="text-2xl font-bold text-stone-900 mb-1 font-display tracking-tight leading-tight">{work.title}</h3>
+                          {work.completionDate && (
+                            <p className="text-xs text-amber-600 font-bold uppercase tracking-widest">
+                               {new Date(work.completionDate).toLocaleDateString('ar-SA', { year: 'numeric', month: 'long' })}
+                            </p>
+                          )}
+                        </div>
+                        <div className="w-12 h-12 bg-amber-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-amber-900/20">
+                           <ArrowRight className="w-6 h-6 -rotate-180" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <div className="mt-24 text-center">
+            <div className="glass-card inline-flex items-center p-2 rounded-2xl bg-white/30 border border-white/50">
+               <div className="bg-amber-100 text-amber-700 px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+                 تبحث عن شيء خاص؟
+                 <Sparkles className="w-4 h-4" />
+               </div>
+               <a 
+                 href="/custom-gift" 
+                 className="px-8 py-3 text-stone-700 hover:text-amber-700 font-bold transition-colors flex items-center gap-2"
+               >
+                 اطلب تصميمك الخاص
+                 <ArrowRight className="w-4 h-4 -rotate-180" />
+               </a>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
