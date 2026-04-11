@@ -481,14 +481,14 @@ export default function AdminDashboard() {
                              <div className="p-6 text-right">
                                 <div className="text-[10px] text-neutral-400 mb-2 font-mono">{new Date(order.createdAt).toLocaleString('ar-SA')}</div>
                                 <p className="text-neutral-700 text-sm leading-relaxed mb-6 line-clamp-3 font-medium h-15">{order.description}</p>
-                                <a 
+                                {/* <a 
                                   href={order.whatsappLink} 
                                   target="_blank" rel="noopener noreferrer"
                                   className="w-full inline-flex items-center justify-center gap-2 bg-white text-neutral-900 border border-neutral-200 hover:border-amber-600 hover:text-amber-600 py-3 rounded-xl text-sm font-bold transition-all shadow-sm"
                                 >
                                   تواصل عبر واتساب
                                   <ExternalLink className="w-4 h-4 mr-2" />
-                                </a>
+                                </a> */}
                              </div>
                           </div>
                         ))}
