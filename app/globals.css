@@ -10,7 +10,7 @@
   --glass-shadow: rgba(0, 0, 0, 0.08);
   --accent: #6b21a8;
   --accent-light: #a855f7;
-  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #7e22ce 50%, #581c87 100%);
+  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #7e22ce 50%, #6b21a8 100%);
   --surface: #ffffff;
   --surface-elevated: #ffffff;
   --border: #e7e5e4;
@@ -60,7 +60,7 @@ body::before {
   bottom: 0;
   background: 
     radial-gradient(ellipse 80% 50% at 20% -20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(107, 33, 168, 0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }

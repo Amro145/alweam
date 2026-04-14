@@ -5,42 +5,49 @@ const features = [
   {
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
     ),
-    title: "جودة عالية",
-    description: "نستخدم أفضل المواد في صناعة وتغليف هداياكم",
+    title: "حسنات جارية ولمسة مليانة حب 🌿",
+    description: "مصحف • سبحة • شوكولاتة.. هديتك ممكن تكون سبب في حسنات جارية. 'وتعاونوا على البر والتقوى'. خلّي بصمتك جميلة وكن دايمًا صاحب أثر. 🎁💫",
   },
   {
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 6l3 1h13l3-1m-19 0v10a2 2 0 002 2h15a2 2 0 002-2V6m-19 0h19M12 11h.01M12 15h.01" />
       </svg>
     ),
-    title: "تخصيص كامل",
-    description: "خيار التعديل والإضافة ليناسب ذوقك الخاص",
+    title: "عبّر بطريقتك.. وخلي هديتك مختلفة 📸✍️",
+    description: "مجات حسب الطلب: تصميم صورة، كتابة، أو أي فكرة في بالك. فكل مجٍّ هنا.. بيتُ شعرٍ صغير يُشرب بالحب. اطلب مجك الآن، واجعل لكل رشفة معنى. ☕💜",
   },
   {
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
-    title: "شحن سريع",
-    description: "توصيل آمن وسريع لجميع مناطق المملكة",
+    title: "خلي هديتك أحلى.. وألذ 🍫✨",
+    description: "بوكيهات شوكولاتة وورد بتنسيق أنيق يلفت الأنظار ويترك أثراً لا يُنسى. اجعل هديتك تقول: أهتمّ بك.. وأقدّر التفاصيل. 🌹🤤",
   },
 ];
 
 const categories = [
   { name: "المجوهرات", slug: "jewelry", icon: "◇", color: "from-purple-400 to-purple-600" },
-  { name: "العطور", slug: "perfumes", icon: "✦", color: "from-purple-400 to-purple-600" },
-  { name: "المقتنيات", slug: "collectibles", icon: "❖", color: "from-emerald-400 to-emerald-600" },
-  { name: "الإكسسوارات", slug: "accessories", icon: "✧", color: "from-rose-400 to-rose-600" },
+  { name: "العطور", slug: "perfumes", icon: "✦", color: "from-purple-500 to-purple-700" },
+  { name: "المقتنيات", slug: "collectibles", icon: "❖", color: "from-purple-600 to-purple-800" },
+  { name: "الإكسسوارات", slug: "accessories", icon: "✧", color: "from-purple-700 to-purple-900" },
 ];
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Announcement Bar */}
+      <div className="bg-linear-to-r from-purple-600 to-purple-800 text-white py-2 text-center text-sm font-bold shadow-md animate-fade-in z-50">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
+          <span className="animate-pulse">🏃🏽</span>
+          توصيل مجاني لكل طلبيات اليوم
+        </div>
+      </div>
       <section className="relative flex-1 flex items-center justify-center min-h-[85vh] overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <Image 
@@ -70,15 +77,15 @@ export default function Home() {
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-stone-900 mb-8 tracking-tight animate-fade-in-up stagger-1" style={{ animationFillMode: 'both' }}>
             <span className="block text-4xl md:text-6xl lg:text-7xl text-stone-600 font-display font-medium">
-              اصنع
+              ليست مجرد هدية..
             </span>
-            <span className="block bg-linear-to-br from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent">
-              ذكرى لا تُنسى
+            <span className="block bg-linear-to-br from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent px-2">
+              بل لحظة جميلة وذكرى تبقى 🤍
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-stone-500 max-w-3xl mx-auto mb-12 leading-relaxed font-light animate-fade-in-up stagger-2" style={{ animationFillMode: 'both' }}>
-            في متجر <span className="font-semibold text-purple-600">الوئام</span>، نحول مشاعرك إلى هدايا ملموسة تُصنع بحب وعناية لتناسب جميع مناسباتك السعيدة.
+            الوئام بيساعدك تختار الهدية المثالية ويوصل إحساسك بأجمل صورة ممكنة. هديتك م مجرد مادة.. دي رسالة وأثر. 💜🌧️
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up stagger-3" style={{ animationFillMode: 'both' }}>
