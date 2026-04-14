@@ -15,8 +15,8 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <span className="relative text-2xl font-bold bg-gradient-to-br from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent font-display tracking-wide">
+              <div className="absolute inset-0 bg-linear-to-br from-purple-400 to-purple-600 rounded-xl blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <span className="relative text-2xl font-bold bg-linear-to-br from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent font-display tracking-wide">
                 الوئام
               </span>
             </div>
@@ -50,13 +50,13 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link 
               href="/custom-gift" 
-              className="hidden sm:inline-flex relative group overflow-hidden bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
+              className="hidden sm:inline-flex relative group overflow-hidden bg-linear-to-br from-purple-500 via-purple-600 to-purple-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">
                 اطلب الآن
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
 
             <button 
@@ -101,10 +101,10 @@ export default function Navbar() {
           </Link>
 
           <div className="pt-4 border-t border-stone-100 flex flex-col gap-4">
-             <Link 
+              <Link 
                 href="/custom-gift" 
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-purple-500 to-purple-700 text-white font-bold py-5 rounded-2xl shadow-lg shadow-purple-900/10"
+                className="w-full flex items-center justify-center gap-2 bg-linear-to-br from-purple-500 to-purple-700 text-white font-bold py-5 rounded-2xl shadow-lg shadow-purple-900/10"
               >
                 اطلب الآن
                 <ArrowRight className="w-5 h-5 -rotate-180" />

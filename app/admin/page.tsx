@@ -261,7 +261,7 @@ export default function AdminDashboard() {
         {/* Sidebar */}
         <aside className="lg:w-72 bg-white lg:min-h-screen border-l border-stone-200 p-8 flex flex-col sticky top-0 z-40">
           <div className="flex items-center gap-4 mb-12">
-            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-900/20">
+            <div className="w-12 h-12 bg-linear-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-purple-900/20">
               <Settings className="w-6 h-6 animate-spin-slow" />
             </div>
             <div>
@@ -273,21 +273,21 @@ export default function AdminDashboard() {
           <nav className="space-y-2 flex-1">
             <button 
               onClick={() => setActiveTab('product')}
-              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'product' ? 'bg-amber-100/50 text-amber-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'product' ? 'bg-purple-100/50 text-purple-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
             >
               <ShoppingBag className="w-5 h-5" />
               المنتجات
             </button>
             <button 
               onClick={() => setActiveTab('portfolio')}
-              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'portfolio' ? 'bg-amber-100/50 text-amber-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'portfolio' ? 'bg-purple-100/50 text-purple-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
             >
               <Briefcase className="w-5 h-5" />
               أعمالنا
             </button>
             <button 
               onClick={() => setActiveTab('orders')}
-              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'orders' ? 'bg-amber-100/50 text-amber-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+              className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold transition-all ${activeTab === 'orders' ? 'bg-purple-100/50 text-purple-700 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
             >
               <FileText className="w-5 h-5" />
               طلبات الهدايا
@@ -338,10 +338,10 @@ export default function AdminDashboard() {
                 
                 {/* Form Section */}
                 <div className="xl:col-span-4">
-                  <div className="glass-card rounded-[2.5rem] p-8 bg-white border-white shadow-2xl shadow-stone-200/50 sticky top-12">
+                  <div className="glass-card rounded-4xl p-8 bg-white border-white shadow-2xl shadow-stone-200/50 sticky top-12">
                      <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center gap-3">
-                           <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600">
+                           <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
                              {activeTab === 'product' ? <PackagePlus className="w-5 h-5" /> : <ImagePlus className="w-5 h-5" />}
                            </div>
                            <h3 className="text-lg font-bold font-display">{editingItem ? 'تعديل البيانات' : 'إضافة جديد'}</h3>
@@ -355,7 +355,7 @@ export default function AdminDashboard() {
 
                     <form onSubmit={activeTab === 'product' ? handleProductSubmit : handlePortfolioSubmit} className="space-y-6">
                       <div className="space-y-2">
-                        <div className="relative group border-2 border-dashed border-stone-200 rounded-3xl p-4 text-center hover:border-amber-500 hover:bg-amber-50/50 transition-all duration-300 cursor-pointer bg-stone-50/50 min-h-[160px] flex flex-col items-center justify-center overflow-hidden">
+                        <div className="relative group border-2 border-dashed border-stone-200 rounded-3xl p-4 text-center hover:border-purple-500 hover:bg-purple-50/50 transition-all duration-300 cursor-pointer bg-stone-50/50 min-h-[160px] flex flex-col items-center justify-center overflow-hidden">
                           <input type="file" accept="image/*" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onChange={handleImageChange} />
                           {previewUrl ? (
                             <img src={previewUrl} alt="Preview" className="max-h-32 object-contain rounded-xl shadow-md border-2 border-white" />
@@ -372,32 +372,32 @@ export default function AdminDashboard() {
                         <>
                           <div className="space-y-1">
                             <label className="text-xs font-bold text-stone-400 pr-2">اسم المنتج</label>
-                            <input defaultValue={editingItem?.data.name} name="name" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all text-sm font-bold" placeholder="مثلاً: صندوق خشبي فاخر" />
+                            <input defaultValue={editingItem?.data.name} name="name" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all text-sm font-bold" placeholder="مثلاً: صندوق خشبي فاخر" />
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                              <div className="space-y-1">
                                 <label className="text-xs font-bold text-stone-400 pr-2">السعر (ر.س)</label>
-                                <input defaultValue={editingItem?.data.price} type="number" name="price" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all text-sm font-bold" />
+                                <input defaultValue={editingItem?.data.price} type="number" name="price" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all text-sm font-bold" />
                              </div>
                              <div className="space-y-1">
                                 <label className="text-xs font-bold text-stone-400 pr-2">الفئة</label>
-                                <input defaultValue={editingItem?.data.category} name="category" className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all text-sm font-bold" placeholder="خشب..." />
+                                <input defaultValue={editingItem?.data.category} name="category" className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all text-sm font-bold" placeholder="خشب..." />
                              </div>
                           </div>
                           <div className="space-y-1">
                             <label className="text-xs font-bold text-stone-400 pr-2">الوصف</label>
-                            <textarea defaultValue={editingItem?.data.description} name="description" rows={3} className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all resize-none text-sm leading-relaxed" placeholder="..." />
+                            <textarea defaultValue={editingItem?.data.description} name="description" rows={3} className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all resize-none text-sm leading-relaxed" placeholder="..." />
                           </div>
                         </>
                       ) : (
                         <>
                           <div className="space-y-1">
                             <label className="text-xs font-bold text-stone-400 pr-2">عنوان العمل</label>
-                            <input defaultValue={editingItem?.data.title} name="title" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all text-sm font-bold" />
+                            <input defaultValue={editingItem?.data.title} name="title" required className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all text-sm font-bold" />
                           </div>
                           <div className="space-y-1">
                             <label className="text-xs font-bold text-stone-400 pr-2">تاريخ الإنجاز (اختياري)</label>
-                            <input defaultValue={editingItem?.data.completionDate} type="date" name="completionDate" className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 outline-none transition-all text-sm font-bold" />
+                            <input defaultValue={editingItem?.data.completionDate} type="date" name="completionDate" className="w-full px-5 py-4 rounded-2xl bg-stone-50 border-stone-100 focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition-all text-sm font-bold" />
                           </div>
                         </>
                       )}
@@ -415,25 +415,25 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {activeTab === 'product' ? (
                        products.length === 0 ? <EmptyState /> : products.map(p => (
-                         <div key={p.id} className="glass-card rounded-[2rem] p-5 flex items-center gap-5 hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-stone-100 flex-shrink-0">
+                         <div key={p.id} className="glass-card rounded-4xl p-5 flex items-center gap-5 hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-stone-100 shrink-0">
                                <Image src={optimizeImage(p.imageUrl)} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                             </div>
                             <div className="flex-1 min-w-0">
                                <p className="text-xs text-stone-400 font-bold mb-1 uppercase tracking-wider">{p.category || 'متنوع'}</p>
                                <h4 className="font-bold text-stone-900 mb-2 truncate font-display">{p.name}</h4>
-                               <p className="text-amber-700 font-bold">{p.price} ر.س</p>
+                               <p className="text-purple-700 font-bold">{p.price} ر.س</p>
                             </div>
                             <div className="flex flex-col gap-2">
-                               <button onClick={() => setEditingItem({ type: 'product', data: p })} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-amber-50 hover:text-amber-600 rounded-xl transition-all"><Edit3 className="w-4 h-4" /></button>
+                               <button onClick={() => setEditingItem({ type: 'product', data: p })} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-purple-50 hover:text-purple-600 rounded-xl transition-all"><Edit3 className="w-4 h-4" /></button>
                                <button onClick={() => handleDelete(p.id, 'product')} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all"><Trash2 className="w-4 h-4" /></button>
                             </div>
                          </div>
                        ))
                     ) : (
                        portfolio.length === 0 ? <EmptyState /> : portfolio.map(p => (
-                         <div key={p.id} className="glass-card rounded-[2rem] p-5 flex items-center gap-5 hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-stone-100 flex-shrink-0">
+                         <div key={p.id} className="glass-card rounded-4xl p-5 flex items-center gap-5 hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-stone-100 shrink-0">
                                <Image src={optimizeImage(p.imageUrl)} alt={p.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                             </div>
                             <div className="flex-1 min-w-0">
@@ -441,7 +441,7 @@ export default function AdminDashboard() {
                                <p className="text-xs text-stone-400">{p.completionDate || 'مكتمل'}</p>
                             </div>
                             <div className="flex flex-col gap-2">
-                               <button onClick={() => setEditingItem({ type: 'portfolio', data: p })} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-amber-50 hover:text-amber-600 rounded-xl transition-all"><Edit3 className="w-4 h-4" /></button>
+                               <button onClick={() => setEditingItem({ type: 'portfolio', data: p })} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-purple-50 hover:text-purple-600 rounded-xl transition-all"><Edit3 className="w-4 h-4" /></button>
                                <button onClick={() => handleDelete(p.id, 'portfolio')} className="p-2.5 bg-stone-50 text-stone-400 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all"><Trash2 className="w-4 h-4" /></button>
                             </div>
                          </div>
@@ -455,14 +455,14 @@ export default function AdminDashboard() {
               /* Orders Section */
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                  {orders.length === 0 ? <div className="col-span-full"><EmptyState message="لا توجد طلبات واردة حالياً" /></div> : orders.map(order => (
-                   <div key={order.id} className="glass-card rounded-[2.5rem] overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                      <div className="relative aspect-[4/3] bg-stone-200 overflow-hidden">
-                         <Image src={optimizeImage(order.imageUrl)} alt="Order" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
-                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                      </div>
+                    <div key={order.id} className="glass-card rounded-4xl overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                       <div className="aspect-4/3 bg-stone-200 overflow-hidden relative">
+                          <Image src={optimizeImage(order.imageUrl)} alt="Order" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                       </div>
                       <div className="p-8">
                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-1.5 h-6 bg-amber-500 rounded-full"></div>
+                            <div className="w-1.5 h-6 bg-purple-500 rounded-full"></div>
                             <span className="text-xs text-stone-400 font-bold font-mono">{new Date(order.createdAt).toLocaleString('ar-SA')}</span>
                          </div>
                          <p className="text-stone-700 text-sm leading-relaxed mb-6 line-clamp-3 font-medium h-15">{order.description}</p>
@@ -486,7 +486,7 @@ export default function AdminDashboard() {
 
 function EmptyState({ message = "لا توجد بيانات حالياً" }) {
   return (
-    <div className="col-span-full bg-white/40 border border-stone-200 border-dashed rounded-[3rem] p-20 text-center flex flex-col items-center justify-center">
+    <div className="col-span-full bg-white/40 border border-stone-200 border-dashed rounded-4xl p-20 text-center flex flex-col items-center justify-center">
        <Sparkles className="w-12 h-12 text-stone-200 mb-6" />
        <p className="text-stone-500 font-bold">{message}</p>
     </div>

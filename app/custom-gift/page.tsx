@@ -100,26 +100,26 @@ export default function CustomGiftPage() {
            </div>
            <h1 className="text-3xl font-bold text-stone-900 mb-4 font-display">تم استلام طلبك!</h1>
            <p className="text-stone-500 mb-8 leading-relaxed">شكراً لثقتكم بالوئام. جاري تحويلك الآن لمحادثة واتساب لمتابعة تفاصيل التصميم والوقت المتوقع للإنجاز.</p>
-           <Loader2 className="w-8 h-8 text-amber-500 animate-spin mx-auto" />
+           <Loader2 className="w-8 h-8 text-purple-500 animate-spin mx-auto" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-100/50 via-stone-50 to-stone-100/30 py-20">
+    <div className="min-h-screen bg-linear-to-b from-stone-100/50 via-stone-50 to-stone-100/30 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
           {/* Info Side */}
           <div className="space-y-12 animate-fade-in">
             <div className="text-right">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-700 text-xs font-bold mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/80 text-purple-700 text-xs font-bold mb-4">
                 <Sparkles className="w-3.5 h-3.5" />
                 هدايا مخصصة
               </div>
               <h1 className="text-4xl md:text-6xl font-bold text-stone-900 mb-6 font-display leading-[1.1]">
-                حوّل <span className="bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">خيالك</span> إلى حقيقة ملموسة
+                حوّل <span className="bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">خيالك</span> إلى حقيقة ملموسة
               </h1>
               <p className="text-lg text-stone-500 leading-relaxed max-w-lg">
                 هل لديك فكرة هدية فريدة؟ دعنا نساعدك في تصميمها وتحويلها إلى واقع بلمساتنا الفنية الخاصة. ارفع صورة للإلهام واشرح لنا ذوقك.
@@ -128,7 +128,7 @@ export default function CustomGiftPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                <div className="glass-card rounded-3xl p-6 bg-white/40 border-white/50">
-                  <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-4 text-amber-600">
+                  <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 text-purple-600">
                      <ShieldCheck className="w-6 h-6" />
                   </div>
                   <h3 className="font-bold text-stone-800 mb-2">جودة التصنيع</h3>
@@ -143,23 +143,23 @@ export default function CustomGiftPage() {
                </div>
             </div>
 
-            <div className="bg-stone-900 rounded-[2rem] p-8 text-white relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl group-hover:bg-amber-500/30 transition-colors"></div>
+            <div className="bg-stone-900 rounded-4xl p-8 text-white relative overflow-hidden group">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-colors"></div>
                <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
-                 <span className="w-2 h-8 bg-amber-500 rounded-full"></span>
+                 <span className="w-2 h-8 bg-purple-500 rounded-full"></span>
                  ماذا سيحدث بعد إرسال الطلب؟
                </h3>
                <ul className="space-y-4 text-white/70">
                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">1</span>
+                    <span className="w-6 h-6 bg-white/10 rounded-full shrink-0 flex items-center justify-center text-xs font-bold text-purple-500">1</span>
                     يتم تحويلك لمحادثة مباشرة عبر واتساب مع فريق الوئام
                  </li>
                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">2</span>
+                    <span className="w-6 h-6 bg-white/10 rounded-full shrink-0 flex items-center justify-center text-xs font-bold text-purple-500">2</span>
                     نناقش معك تفاصيل التصميم، الحجم، والمواد المستخدمة
                  </li>
                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-white/10 rounded-full flex flex-shrink-0 items-center justify-center text-xs font-bold text-amber-500">3</span>
+                    <span className="w-6 h-6 bg-white/10 rounded-full shrink-0 flex items-center justify-center text-xs font-bold text-purple-500">3</span>
                     نرسل لك عرض السعر والمدة الزمنية المتوقعة للإنجاز
                  </li>
                </ul>
@@ -180,7 +180,7 @@ export default function CustomGiftPage() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-4">
                   <label className="block text-sm font-bold text-stone-800 pr-2">صورة الإلهام أو المسودة</label>
-                  <div className="relative group border-2 border-dashed border-stone-200 rounded-3xl p-10 text-center hover:border-amber-500 hover:bg-amber-50/50 transition-all duration-300 cursor-pointer bg-stone-50/50 min-h-[250px] flex flex-col items-center justify-center">
+                  <div className="relative group border-2 border-dashed border-stone-200 rounded-3xl p-10 text-center hover:border-purple-500 hover:bg-purple-50/50 transition-all duration-300 cursor-pointer bg-stone-50/50 min-h-[250px] flex flex-col items-center justify-center">
                     <input 
                       type="file" 
                       name="image" 
@@ -196,7 +196,7 @@ export default function CustomGiftPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="w-20 h-20 bg-white rounded-[1.5rem] shadow-xl shadow-stone-200 flex items-center justify-center mb-6 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+                        <div className="w-20 h-20 bg-white rounded-3xl shadow-xl shadow-stone-200 flex items-center justify-center mb-6 text-purple-600 group-hover:scale-110 group-hover:rotate-6 transition-transform">
                           <UploadCloud className="w-10 h-10" />
                         </div>
                         <p className="text-lg text-stone-800 font-bold mb-1 font-display">اضغط لرفع الصورة</p>
@@ -213,7 +213,7 @@ export default function CustomGiftPage() {
                     name="description" 
                     rows={5} 
                     required
-                    className="w-full px-6 py-5 rounded-3xl border border-stone-100 shadow-sm bg-stone-50 focus:bg-white focus:ring-8 focus:ring-amber-500/5 focus:border-amber-500 outline-none transition-all resize-none text-stone-800 placeholder:text-stone-300 text-right leading-relaxed"
+                    className="w-full px-6 py-5 rounded-3xl border border-stone-100 shadow-sm bg-stone-50 focus:bg-white focus:ring-8 focus:ring-purple-500/5 focus:border-purple-500 outline-none transition-all resize-none text-stone-800 placeholder:text-stone-300 text-right leading-relaxed"
                     placeholder="اشرح لنا تفاصيل الهدية التي ترغب بها، المواد، الألوان، أو أي ملاحظات أخرى..."
                   ></textarea>
                 </div>
@@ -236,7 +236,7 @@ export default function CustomGiftPage() {
                       </>
                     )}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-purple-700 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </button>
               </form>
             </div>

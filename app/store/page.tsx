@@ -43,22 +43,22 @@ export default function StorePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-100/50 to-stone-50">
+    <div className="min-h-screen bg-linear-to-b from-stone-100/50 to-stone-50">
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-200/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-amber-300/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-200/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-purple-300/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 animate-fade-in">
             <div className="text-right">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/80 text-amber-700 text-xs font-bold mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/80 text-purple-700 text-xs font-bold mb-4">
                 <Sparkles className="w-3.5 h-3.5" />
                 متجر الوئام
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4 font-display">
-                تشكيلتنا <span className="bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">المختارة</span>
+                تشكيلتنا <span className="bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">المختارة</span>
               </h1>
               <p className="text-lg text-stone-500 max-w-xl">اكتشف هدايانا الفاخرة المصنوعة يدوياً بكل إتقان لتناسب أرقى الأذواق</p>
             </div>
@@ -75,7 +75,7 @@ export default function StorePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <div key={i} className="glass-card rounded-3xl overflow-hidden p-3 animate-pulse">
-                  <div className="aspect-[4/5] bg-stone-100 rounded-2xl mb-4"></div>
+                  <div className="aspect-4/5 bg-stone-100 rounded-2xl mb-4"></div>
                   <div className="px-4 pb-4 space-y-3">
                     <div className="h-4 bg-stone-100 rounded w-3/4"></div>
                     <div className="h-4 bg-stone-100 rounded w-1/2"></div>
@@ -90,7 +90,7 @@ export default function StorePage() {
               </div>
               <h2 className="text-2xl font-bold text-stone-900 mb-2 font-display">لا توجد منتجات حالياً</h2>
               <p className="text-stone-500 max-w-md">نحن بصدد إطلاق تشكيلتنا الجديدة. يرجى العودة قريباً لمشاهدة أحدث ابتكاراتنا.</p>
-              <Link href="/" className="mt-8 text-amber-600 font-bold hover:underline">العودة للرئيسية</Link>
+              <Link href="/" className="mt-8 text-purple-600 font-bold hover:underline">العودة للرئيسية</Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -102,7 +102,7 @@ export default function StorePage() {
                   style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
                 >
                   <div className="glass-card-hover rounded-3xl overflow-hidden bg-white/40 group-hover:bg-white/80 p-3 flex flex-col h-full border border-white/50 shadow-lg shadow-stone-200/50">
-                    <div className="aspect-[4/5] relative overflow-hidden rounded-2xl bg-stone-100">
+                    <div className="aspect-4/5 relative overflow-hidden rounded-2xl bg-stone-100">
                       <Image 
                         src={optimizeImage(product.imageUrl)} 
                         alt={product.name} 
@@ -113,7 +113,7 @@ export default function StorePage() {
                       />
                       <div className="absolute top-4 right-4 translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
                          <div className="bg-white/80 backdrop-blur-md p-2 rounded-xl shadow-lg">
-                           <ArrowRight className="w-5 h-5 text-amber-600 -rotate-180" />
+                           <ArrowRight className="w-5 h-5 text-purple-600 -rotate-180" />
                          </div>
                       </div>
                     </div>
@@ -123,11 +123,11 @@ export default function StorePage() {
                           {product.category}
                         </span>
                       )}
-                      <h3 className="text-lg font-bold text-stone-900 mb-3 group-hover:text-amber-700 transition-colors line-clamp-1 font-display">
+                      <h3 className="text-lg font-bold text-stone-900 mb-3 group-hover:text-purple-700 transition-colors line-clamp-1 font-display">
                         {product.name}
                       </h3>
                       <div className="mt-auto flex items-center justify-between">
-                         <p className="text-xl font-bold bg-gradient-to-br from-amber-600 to-amber-700 bg-clip-text text-transparent">
+                         <p className="text-xl font-bold bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">
                            {product.price} ر.س
                          </p>
                          <span className="text-xs text-stone-400 font-light">متاح</span>
