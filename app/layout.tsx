@@ -36,7 +36,7 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold bg-gradient-to-br from-amber-600 to-amber-800 bg-clip-text text-transparent font-display mb-4">
+                <h3 className="text-2xl font-bold bg-gradient-to-br from-purple-600 to-purple-800 bg-clip-text text-transparent font-display mb-4">
                   الوئام
                 </h3>
                 <p className="text-stone-500 leading-relaxed max-w-md">
@@ -46,9 +46,9 @@ export default function RootLayout({
               <div>
                 <h4 className="text-stone-800 font-semibold mb-4">روابط سريعة</h4>
                 <ul className="space-y-2 text-stone-500">
-                  <li><Link href="/store" className="hover:text-amber-600 transition-colors">المنتجات</Link></li>
-                  <li><Link href="/portfolio" className="hover:text-amber-600 transition-colors">أعمالنا</Link></li>
-                  <li><Link href="/custom-gift" className="hover:text-amber-600 transition-colors">هدية مخصصة</Link></li>
+                  <li><Link href="/store" className="hover:text-purple-600 transition-colors">المنتجات</Link></li>
+                  <li><Link href="/portfolio" className="hover:text-purple-600 transition-colors">أعمالنا</Link></li>
+                  <li><Link href="/custom-gift" className="hover:text-purple-600 transition-colors">هدية مخصصة</Link></li>
                 </ul>
               </div>
               <div>

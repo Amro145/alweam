@@ -15,8 +15,8 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
-              <span className="relative text-2xl font-bold bg-gradient-to-br from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent font-display tracking-wide">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl blur-sm opacity-40 group-hover:opacity-60 transition-opacity"></div>
+              <span className="relative text-2xl font-bold bg-gradient-to-br from-purple-600 via-purple-500 to-purple-700 bg-clip-text text-transparent font-display tracking-wide">
                 الوئام
               </span>
             </div>
@@ -27,20 +27,20 @@ export default function Navbar() {
           <nav className="hidden lg:flex items-center gap-1">
             <Link 
               href="/store" 
-              className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
+              className="px-4 py-2 text-stone-600 hover:text-purple-700 transition-all duration-300 font-medium rounded-xl hover:bg-purple-50/50"
             >
               المنتجات
             </Link>
             
             <Link 
               href="/portfolio" 
-              className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
+              className="px-4 py-2 text-stone-600 hover:text-purple-700 transition-all duration-300 font-medium rounded-xl hover:bg-purple-50/50"
             >
               أعمالنا
             </Link>
             <Link 
               href="/custom-gift" 
-              className="px-4 py-2 text-stone-600 hover:text-amber-700 transition-all duration-300 font-medium rounded-xl hover:bg-amber-50/50"
+              className="px-4 py-2 text-stone-600 hover:text-purple-700 transition-all duration-300 font-medium rounded-xl hover:bg-purple-50/50"
             >
               هدية مخصصة
             </Link>
@@ -50,18 +50,18 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link 
               href="/custom-gift" 
-              className="hidden sm:inline-flex relative group overflow-hidden bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 transition-all duration-300 hover:scale-105"
+              className="hidden sm:inline-flex relative group overflow-hidden bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-purple-500/20 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">
                 اطلب الآن
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
 
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2.5 rounded-xl bg-stone-100/80 text-stone-600 hover:bg-amber-50 hover:text-amber-700 transition-all"
+              className="lg:hidden p-2.5 rounded-xl bg-stone-100/80 text-stone-600 hover:bg-purple-50 hover:text-purple-700 transition-all"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -75,7 +75,7 @@ export default function Navbar() {
           <Link 
             href="/store" 
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-amber-50 hover:text-amber-700 transition-all"
+            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-purple-50 hover:text-purple-700 transition-all"
           >
             <ShoppingBag className="w-5 h-5" />
             المنتجات
@@ -85,7 +85,7 @@ export default function Navbar() {
           <Link 
             href="/portfolio" 
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-amber-50 hover:text-amber-700 transition-all"
+            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-purple-50 hover:text-purple-700 transition-all"
           >
             <Briefcase className="w-5 h-5" />
             أعمالنا
@@ -94,7 +94,7 @@ export default function Navbar() {
           <Link 
             href="/custom-gift" 
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-amber-50 hover:text-amber-700 transition-all"
+            className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-stone-50 text-stone-700 font-bold hover:bg-purple-50 hover:text-purple-700 transition-all"
           >
             <MessageCircle className="w-5 h-5" />
             هدية مخصصة
@@ -104,7 +104,7 @@ export default function Navbar() {
              <Link 
                 href="/custom-gift" 
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-amber-500 to-amber-700 text-white font-bold py-5 rounded-2xl shadow-lg shadow-amber-900/10"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-purple-500 to-purple-700 text-white font-bold py-5 rounded-2xl shadow-lg shadow-purple-900/10"
               >
                 اطلب الآن
                 <ArrowRight className="w-5 h-5 -rotate-180" />
