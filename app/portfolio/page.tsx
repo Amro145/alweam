@@ -96,7 +96,7 @@ export default function PortfolioPage() {
                     />
                     
                     {/* Overlay info */}
-                    <div className="absolute inset-x-4 bottom-4 glass-card p-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
+                    <div className="absolute inset-x-4 bottom-4 glass-card p-6 translate-y-0 opacity-100 lg:translate-y-8 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                       <div className="flex items-end justify-between gap-4">
                         <div className="text-right">
                           <h3 className="text-2xl font-bold text-stone-900 mb-1 font-display tracking-tight leading-tight">{work.title}</h3>
