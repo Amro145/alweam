@@ -69,6 +69,11 @@ export default function RootLayout({
             <div className="border-t border-stone-200/50 mt-8 pt-8 text-center text-stone-400 text-sm">
               <p>© {new Date().getFullYear()} الوئام. جميع الحقوق محفوظة</p>
             </div>
+            {/* TODO : developer whatsapp +249965158196  */}
+            <div className="border-t border-stone-200/50 mt-8 pt-8 text-center text-stone-400 text-sm">
+              <p>Developed by <a href="https://github.com/Amro145" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600 transition-colors">Amro Al-Tayeb</a></p>
+              <a href="https://wa.me/+249965158196" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600 transition-colors">+249965158196</a>
+            </div>
           </div>
         </footer>
       </body>
