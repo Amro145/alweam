@@ -62,7 +62,7 @@ export default function StorePage() {
               </h1>
               <p className="text-lg text-stone-500 max-w-xl">اكتشف هدايانا الفاخرة المصنوعة يدوياً بكل إتقان لتناسب أرقى الأذواق</p>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-stone-200 rounded-xl text-stone-600 text-sm font-medium hover:bg-stone-50 transition-all shadow-sm">
                 <Filter className="w-4 h-4" />
@@ -95,26 +95,26 @@ export default function StorePage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {products.map((product, index) => (
-                <Link 
-                  key={product.id} 
-                  href={`/store/${product.id}`} 
+                <Link
+                  key={product.id}
+                  href={`/store/${product.id}`}
                   className="group animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
                 >
                   <div className="glass-card-hover rounded-3xl overflow-hidden bg-white/40 group-hover:bg-white/80 p-3 flex flex-col h-full border border-white/50 shadow-lg shadow-stone-200/50">
                     <div className="aspect-4/5 relative overflow-hidden rounded-2xl bg-stone-100">
-                      <Image 
-                        src={optimizeImage(product.imageUrl)} 
-                        alt={product.name} 
+                      <Image
+                        src={optimizeImage(product.imageUrl)}
+                        alt={product.name}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="lazy"
                       />
                       <div className="absolute top-4 right-4 translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
-                         <div className="bg-white/80 backdrop-blur-md p-2 rounded-xl shadow-lg">
-                           <ArrowRight className="w-5 h-5 text-purple-600 -rotate-180" />
-                         </div>
+                        <div className="bg-white/80 backdrop-blur-md p-2 rounded-xl shadow-lg">
+                          <ArrowRight className="w-5 h-5 text-purple-600 -rotate-180" />
+                        </div>
                       </div>
                     </div>
                     <div className="p-5 text-right flex flex-col flex-1">
@@ -127,10 +127,10 @@ export default function StorePage() {
                         {product.name}
                       </h3>
                       <div className="mt-auto flex items-center justify-between">
-                         <p className="text-xl font-bold bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">
-                           {product.price} ر.س
-                         </p>
-                         <span className="text-xs text-stone-400 font-light">متاح</span>
+                        <p className="text-xl font-bold bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">
+                          {product.price} ج.م
+                        </p>
+                        <span className="text-xs text-stone-400 font-light">متاح</span>
                       </div>
                     </div>
                   </div>

@@ -108,7 +108,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-purple-300/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
           <nav className="flex items-center gap-2 text-sm text-stone-500 mb-8 animate-fade-in">
             <Link href="/" className="hover:text-purple-600 transition-colors">الرئيسية</Link>
@@ -158,8 +158,8 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
               <p className="text-stone-500 mb-8">
                 نعمل حالياً على إضافة منتجات جديدة لهذه الفئة. تابعنا قريباً!
               </p>
-              <Link 
-                href="/store" 
+              <Link
+                href="/store"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-br from-purple-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
               >
                 تصفح جميع المنتجات
@@ -174,20 +174,20 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                 <span className="font-semibold text-stone-800">{products.length}</span> منتج متوفر
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {products.map((product, index) => (
-                <Link 
-                  key={product.id} 
+                <Link
+                  key={product.id}
                   href={`/store/${product.id}`}
                   className="group animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.05}s`, animationFillMode: 'both' }}
                 >
                   <div className="glass-card-hover rounded-3xl overflow-hidden bg-white/60 h-full flex flex-col">
                     <div className="relative aspect-4/5 overflow-hidden">
-                      <Image 
-                        src={optimizeImage(product.imageUrl)} 
-                        alt={product.name} 
+                      <Image
+                        src={optimizeImage(product.imageUrl)}
+                        alt={product.name}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -206,7 +206,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                       </h3>
                       <div className="mt-auto pt-4 flex items-center justify-between">
                         <p className="text-xl font-bold bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">
-                          {product.price} ر.س
+                          {product.price} ج.م
                         </p>
                         <span className="text-xs text-stone-400">عرض التفاصيل</span>
                       </div>

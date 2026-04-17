@@ -78,8 +78,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
           <h2 className="text-2xl font-semibold text-stone-800 mb-3 font-display">المنتج غير موجود</h2>
           <p className="text-stone-500 mb-8">عذراً، لم نتمكن من العثور على هذا المنتج.</p>
-          <Link 
-            href="/store" 
+          <Link
+            href="/store"
             className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-br from-purple-500 to-purple-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
           >
             العودة للمتجر
@@ -90,7 +90,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     );
   }
 
-  const whatsappMessage = `مرحباً، أود الاستفسار عن المنتج: ${product.name}\nالسعر: ${product.price} ر.س\nالرابط: ${typeof window !== 'undefined' ? window.location.href : ''}`;
+  const whatsappMessage = `مرحباً، أود الاستفسار عن المنتج: ${product.name}\nالسعر: ${product.price} ج.م\nالرابط: ${typeof window !== 'undefined' ? window.location.href : ''}`;
   const whatsappUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '966500000000'}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -120,9 +120,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 <div className={`absolute inset-0 bg-linear-to-br from-purple-100/50 to-stone-100/50 flex items-center justify-center transition-opacity duration-500 ${imageLoaded ? 'opacity-0' : 'opacity-100'}`}>
                   <div className="w-full h-full skeleton"></div>
                 </div>
-                <Image 
-                  src={optimizeImage(product.imageUrl)} 
-                  alt={product.name} 
+                <Image
+                  src={optimizeImage(product.imageUrl)}
+                  alt={product.name}
                   fill
                   priority
                   className={`object-cover transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -131,7 +131,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 />
                 <div className="absolute inset-0 ring-1 ring-inset ring-stone-200/50 rounded-4xl pointer-events-none"></div>
               </div>
-              
+
               {product.category && (
                 <div className="mt-6 flex items-center gap-3 animate-fade-in" style={{ animationDelay: '0.3s' }}>
                   <div className="w-1 h-6 bg-linear-to-b from-purple-500 to-purple-600 rounded-full"></div>
@@ -142,7 +142,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               )}
             </div>
           </div>
-          
+
           <div className="animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
             <div className="space-y-8">
               <div>
@@ -155,9 +155,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 </h1>
                 <div className="flex items-center gap-4 mb-6">
                   <p className="text-4xl font-bold bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">
-                    {product.price} ر.س
+                    {product.price} ج.م
                   </p>
-                  <span className="text-lg text-stone-400 line-through">{(product.price * 1.2).toFixed(0)} ر.س</span>
+                  <span className="text-lg text-stone-400 line-through">{(product.price * 1.2).toFixed(0)} ج.م</span>
                 </div>
               </div>
 
@@ -170,7 +170,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               </div>
 
               <div className="glass-card rounded-3xl p-6 space-y-4">
-                <a 
+                <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -180,9 +180,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                   <span className="text-lg">اطلب الآن عبر واتساب</span>
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
                 </a>
-                
-                <Link 
-                  href="/custom-gift" 
+
+                <Link
+                  href="/custom-gift"
                   className="group w-full flex items-center justify-center gap-3 bg-white hover:bg-purple-50 text-stone-700 hover:text-purple-700 font-semibold py-5 rounded-2xl transition-all duration-300 text-lg border-2 border-stone-200 hover:border-purple-200 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Sparkles className="w-5 h-5" />
@@ -223,8 +223,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 </div>
               </div>
 
-              <Link 
-                href="/store" 
+              <Link
+                href="/store"
                 className="group inline-flex items-center gap-2 text-stone-500 hover:text-purple-600 transition-colors font-medium"
               >
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -31,12 +31,7 @@ const features = [
   },
 ];
 
-const categories = [
-  { name: "المجوهرات", slug: "jewelry", icon: "◇", color: "from-purple-400 to-purple-600" },
-  { name: "العطور", slug: "perfumes", icon: "✦", color: "from-purple-500 to-purple-700" },
-  { name: "المقتنيات", slug: "collectibles", icon: "❖", color: "from-purple-600 to-purple-800" },
-  { name: "الإكسسوارات", slug: "accessories", icon: "✧", color: "from-purple-700 to-purple-900" },
-];
+
 
 export default function Home() {
   return (
@@ -139,48 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-linear-to-b from-stone-100/50 to-stone-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 text-purple-700 text-sm font-medium mb-6">
-              <span>تصفح حسب الفئة</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4 font-display">
-              استكشف <span className="bg-linear-to-br from-purple-600 to-purple-700 bg-clip-text text-transparent">تصنيفاتنا</span>
-            </h2>
-            <p className="text-lg text-stone-500 max-w-2xl mx-auto">
-              اختر من بين تشكيلاتنا المتنوعة ما يناسب ذوقك ومناسبةك
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.map((cat, index) => (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="group animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                <div className="glass-card-hover rounded-3xl p-8 text-center h-full flex flex-col items-center justify-center bg-white/40 hover:bg-white/70">
-                  <div className="relative mb-4">
-                    <div className={`absolute inset-0 bg-linear-to-br ${cat.color} rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity`}></div>
-                    <span className="relative text-4xl bg-linear-to-br from-stone-600 to-stone-800 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-                      {cat.icon}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-bold text-stone-800 mb-2 group-hover:text-purple-700 transition-colors font-display">
-                    {cat.name}
-                  </h3>
-                  <span className="text-sm text-stone-400 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                    استكشف
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       <section className="py-24 bg-linear-to-b from-stone-50 to-stone-100/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
