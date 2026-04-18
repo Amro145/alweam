@@ -6,6 +6,7 @@ import {
   Settings, ShoppingBag, Briefcase, FileText, ChevronRight,
   ExternalLink, Edit3, X, Save, UploadCloud, LogOut, Search, Filter, Sparkles
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface Product {
@@ -48,8 +49,20 @@ export default function AdminDashboard() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const adminSecret = process.env.NEXT_PUBLIC_ADMIN_SECRET || 'super_secret_admin_token_change_me';
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://my-app.amroaltayeb14.workers.dev';
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+      router.push('/login');
+    }
+  }, []);
+
+  const getAuthHeader = (): Record<string, string> => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  };
 
   const fetchData = async () => {
     try {
@@ -63,7 +76,7 @@ export default function AdminDashboard() {
         if (data.data) setPortfolio(data.data);
       } else if (activeTab === 'orders') {
         const res = await fetch(`${apiUrl}/api/upload-gift`, {
-          headers: { 'Authorization': `Bearer ${adminSecret}` }
+          headers: getAuthHeader()
         });
         const data = await res.json();
         if (data.data) setOrders(data.data);
@@ -157,7 +170,7 @@ export default function AdminDashboard() {
         method,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminSecret}`
+          ...getAuthHeader()
         },
         body: JSON.stringify(data)
       });
@@ -209,7 +222,7 @@ export default function AdminDashboard() {
         method,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminSecret}`
+          ...getAuthHeader()
         },
         body: JSON.stringify(data)
       });
@@ -235,9 +248,7 @@ export default function AdminDashboard() {
     try {
       const res = await fetch(`${apiUrl}/api/${type === 'product' ? 'products' : 'portfolio'}/${id}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${adminSecret}`
-        }
+        headers: getAuthHeader()
       });
       if (!res.ok) throw new Error('فشل الحذف');
       setMessage({ type: 'success', text: 'تم الحذف بنجاح!' });
@@ -295,7 +306,14 @@ export default function AdminDashboard() {
           </nav>
 
           <div className="mt-8 pt-8 border-t border-stone-100">
-            <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-red-400 hover:bg-red-50 transition-all">
+            <button 
+              onClick={() => {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                router.push('/login');
+              }}
+              className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-sm font-bold text-red-400 hover:bg-red-50 transition-all"
+            >
               <LogOut className="w-5 h-5" />
               تسجيل الخروج
             </button>
