@@ -43,6 +43,7 @@ export default function AdminDashboard() {
   const [products, setProducts] = useState<Product[]>([]);
   const [portfolio, setPortfolio] = useState<Portfolio[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   const [editingItem, setEditingItem] = useState<{ type: 'product' | 'portfolio', data: any } | null>(null);
 
@@ -56,6 +57,8 @@ export default function AdminDashboard() {
     const token = localStorage.getItem('adminToken');
     if (!token) {
       router.push('/login');
+    } else {
+      setIsAuthenticated(true);
     }
   }, []);
 
@@ -264,6 +267,14 @@ export default function AdminDashboard() {
     }
     return url;
   };
+
+  if (isAuthenticated === null) {
+    return (
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <Loader2 className="w-10 h-10 text-purple-600 animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900" dir="rtl">
